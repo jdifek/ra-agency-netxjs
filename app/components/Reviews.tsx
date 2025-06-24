@@ -4,6 +4,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
+import Image from 'next/image';
 
 const reviews = [
   {
@@ -69,7 +70,9 @@ export const Reviews: React.FC = () => {
                : 'bg-white border-gray-200 hover:shadow-md'
            )}
          >
-           <img
+           <Image
+           width={10}
+           height={10}
              src={review.photo}
              alt={review.name}
              className="w-16 h-16 rounded-full mb-4 object-cover border-2"
