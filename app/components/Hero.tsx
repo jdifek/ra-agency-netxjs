@@ -10,20 +10,9 @@ export const Hero: React.FC = () => {
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
-  const hoverVariants = {
-    light: {
-      scale: 1.05,
-      backgroundColor: "#d1d5db",
-    },
-    dark: {
-      scale: 1.05,
-      backgroundColor: "#4b5563",
-    },
-  };
+ 
 
-  const baseColor =
-    theme === "dark" ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900";
-
+ 
   return (
     <section
       className={clsx(
