@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
           />
         ))}
       </div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -100,21 +100,19 @@ export const Hero: React.FC = () => {
           <br />У СВІТ TELEGRAM ADS
         </motion.h1>
         <motion.button
-          whileHover={theme}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          variants={hoverVariants}
           transition={{
             opacity: { delay: 0.8, duration: 0.5 },
             y: { delay: 0.8, duration: 0.5 },
-            scale: { duration: 0.15 },
-            backgroundColor: { duration: 0.15 },
           }}
           onClick={scrollToContact}
           className={clsx(
-            "inline-flex items-center space-x-2 px-8 cursor-pointer py-4 rounded-full font-medium group",
-            baseColor
+            "inline-flex items-center space-x-2 px-8 cursor-pointer py-4 rounded-full font-medium group transition-colors duration-200",
+            theme === "dark"
+              ? "bg-gray-700 text-white hover:bg-gray-600"
+              : "bg-gray-200 text-gray-900 hover:bg-gray-300"
           )}
         >
           <span>БІЛЬШЕ ПРО НАС</span>
