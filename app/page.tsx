@@ -10,6 +10,7 @@ import { Services } from './components/Services';
 import { Cases } from './components/Cases';
 import { Reviews } from './components/Reviews';
 import { ContactForm } from './components/ContactForm';
+import { AchievementsAndTeam } from './components/AchievementsAndTeam';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
             <Hero />
             <About />
             <Services />
+            <AchievementsAndTeam />
             <Cases />
             <Reviews />
             <ContactForm />
