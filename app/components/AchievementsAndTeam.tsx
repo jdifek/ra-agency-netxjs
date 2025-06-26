@@ -56,6 +56,7 @@ const currentMonth = new Date().toLocaleString('uk-UA', {
   month: 'long',
 }).toUpperCase();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AchievementItem = ({ icon: Icon, item, index }: any) => {
   const { theme } = useTheme();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
