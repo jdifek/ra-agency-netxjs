@@ -9,6 +9,10 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { Users, Eye, DollarSign, Activity } from 'lucide-react';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+
 const achievements = [
   {
     label: 'Аудиторія в місяць',
@@ -52,7 +56,6 @@ const currentMonth = new Date().toLocaleString('uk-UA', {
   month: 'long',
 }).toUpperCase();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AchievementItem = ({ icon: Icon, item, index }: any) => {
   const { theme } = useTheme();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
@@ -94,8 +97,6 @@ export const AchievementsAndTeam: React.FC = () => {
         theme === 'dark' ? 'bg-black' : 'bg-gray-100'
       )}
     >
-     
-
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -132,29 +133,42 @@ export const AchievementsAndTeam: React.FC = () => {
           Наша Команда
         </motion.h3>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
-          {team.map((member, i) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="flex flex-col items-center space-y-2"
-            >
-              <Image
-                src={member.avatar}
-                alt={member.name}
-                width={80}
-                height={80}
-                className="rounded-full object-cover border-2 border-amber-500"
-              />
-              <div className={clsx('text-sm font-medium', theme === 'dark' ? 'text-white' : 'text-gray-800')}>
-                {member.name}
-              </div>
-            </motion.div>
-          ))}
+        <Swiper
+  modules={[Autoplay]}
+  spaceBetween={20}
+  loop={true}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  breakpoints={{
+    0: { slidesPerView: 1 },        // телефоны
+    768: { slidesPerView: 3 },      // планшеты
+    1280: { slidesPerView: 6 },     // десктопы
+  }}
+  className="!pb-8"
+>
+  {team.map((member, i) => (
+    <SwiperSlide key={member.name}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: i * 0.1 }}
+        className="flex flex-col items-center space-y-2"
+      >
+        <Image
+          src={member.avatar}
+          alt={member.name}
+          width={80}
+          height={80}
+          className="rounded-full object-cover border-2 border-amber-500"
+        />
+        <div className={clsx('text-sm font-medium', theme === 'dark' ? 'text-white' : 'text-gray-800')}>
+          {member.name}
         </div>
+      </motion.div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
       </div>
     </section>
   );
