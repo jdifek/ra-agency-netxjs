@@ -27,7 +27,7 @@ export const ContactForm: React.FC = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:3002/form', {
+      const response = await fetch('https://ra-agency-back-production-246f.up.railway.app/form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
