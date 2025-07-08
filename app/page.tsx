@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
-import clsx from 'clsx';
-import { ThemeProvider } from './components/ThemeProvider';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Services } from './components/Services';
-import { Cases } from './components/Cases';
-import { Reviews } from './components/Reviews';
-import { ContactForm } from './components/ContactForm';
-import { AchievementsAndTeam } from './components/AchievementsAndTeam';
+import React from "react";
+import clsx from "clsx";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
+import { About } from "./components/About";
+import { Services } from "./components/Services";
+import { Cases } from "./components/Cases";
+import { Reviews } from "./components/Reviews";
+import { ContactForm } from "./components/ContactForm";
+import { AchievementsAndTeam } from "./components/AchievementsAndTeam";
+import { PartnersMedia } from "./components/PartnersMedia";
 
 export default function Home() {
   return (
@@ -18,8 +19,10 @@ export default function Home() {
       {(theme) => (
         <div
           className={clsx(
-            'min-h-screen',
-            theme === 'dark' ? 'bg-black text-white' : 'bg-gray-100 text-gray-900'
+            "min-h-screen",
+            theme === "dark"
+              ? "bg-black text-white"
+              : "bg-gray-100 text-gray-900"
           )}
         >
           <Header />
@@ -30,12 +33,14 @@ export default function Home() {
             <AchievementsAndTeam />
             <Cases />
             <Reviews />
+            <PartnersMedia />
+
             <ContactForm />
           </main>
           <footer
             className={clsx(
-              'relative mt-32 pt-16 pb-16 border-t',
-              theme === 'dark' ? 'border-white/10' : 'border-gray-200'
+              "relative mt-32 pt-16 pb-16 border-t",
+              theme === "dark" ? "border-white/10" : "border-gray-200"
             )}
           >
             <div className="max-w-7xl mx-auto px-6">
@@ -47,8 +52,8 @@ export default function Home() {
                     </div>
                     <span
                       className={clsx(
-                        'font-bold',
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        "font-bold",
+                        theme === "dark" ? "text-white" : "text-gray-900"
                       )}
                     >
                       RA AGENCY
@@ -56,8 +61,8 @@ export default function Home() {
                   </div>
                   <div
                     className={clsx(
-                      'space-y-2 text-sm',
-                      theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                      "space-y-2 text-sm",
+                      theme === "dark" ? "text-gray-400" : "text-gray-500"
                     )}
                   >
                     <p>Політика конфіденційності</p>
@@ -67,16 +72,16 @@ export default function Home() {
                 <div>
                   <h3
                     className={clsx(
-                      'font-medium mb-4',
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
+                      "font-medium mb-4",
+                      theme === "dark" ? "text-white" : "text-gray-900"
                     )}
                   >
                     Сервіси
                   </h3>
                   <div
                     className={clsx(
-                      'space-y-2 text-sm',
-                      theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                      "space-y-2 text-sm",
+                      theme === "dark" ? "text-gray-400" : "text-gray-500"
                     )}
                   >
                     <p>Про нас</p>
