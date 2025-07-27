@@ -4,9 +4,13 @@ import React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
+import { useTranslations } from 'next-intl';
 
 export const About: React.FC = () => {
   const { theme } = useTheme();
+  const t = useTranslations('about');
+
+  const lines = t.raw('lines') as string[];
 
   return (
     <section
@@ -17,9 +21,11 @@ export const About: React.FC = () => {
       )}
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
-      <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
+
+      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,41 +36,34 @@ export const About: React.FC = () => {
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           )}
         >
-          Про RA Agency
+          {t('title')}
         </motion.h2>
 
-        {/* Тонкая линия под заголовком */}
+        {/* Divider */}
         <div
           className={clsx(
-            'mx-auto mb-12 h-1 w-20 rounded-full',
+            'mx-auto mb-10 h-1 w-20 rounded-full',
             theme === 'dark' ? 'bg-amber-500' : 'bg-amber-600'
           )}
-        ></div>
+        />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className={clsx(
-            'text-lg max-w-3xl mx-auto leading-relaxed',
-            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-          )}
-        >
-          RA Agency — це{' '}
-          <strong className={clsx(theme === 'dark' ? 'text-white' : 'text-gray-900')}>
-            маркетингове агентство
-          </strong>
-          , яке спеціалізується на просуванні через{' '}
-          <strong className={clsx(theme === 'dark' ? 'text-amber-400' : 'text-amber-600')}>
-            Telegram Ads
-          </strong>
-          . Ми допомагаємо брендам досягати їхньої аудиторії з максимальною ефективністю, створюючи стратегії, що приносять{' '}
-          <strong className={clsx(theme === 'dark' ? 'text-amber-400' : 'text-amber-600')}>
-            реальні результати
-          </strong>
-          .
-        </motion.p>
+        {/* Description Lines */}
+        <div className="space-y-5 text-lg leading-relaxed">
+          {lines.map((line, index) => (
+            <motion.p
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={clsx(
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              )}
+            >
+              {line}
+            </motion.p>
+          ))}
+        </div>
       </div>
     </section>
   );

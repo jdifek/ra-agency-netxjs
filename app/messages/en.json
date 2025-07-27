@@ -1,0 +1,138 @@
+{
+  "hero": {
+    "tagline": "ROI or DIE",
+    "titleLine1": "High-quality traffic",
+    "titleLine2": "from Telegram Ads without limits",
+    "button": "LEARN MORE ABOUT US",
+    "bottomText": "We don’t buy clicks. We take minds.",
+    "buttonFOC": "Write us",
+    "watermark": "RA AGENCY"
+  },
+  "cases": {
+    "title": "Our Cases",
+    "prev": "Previous",
+    "next": "Next",
+    "projects": [
+      {
+        "title": "Boinkers",
+        "budget": "Budget: 50K",
+        "users": "571,722 new users (all geos)",
+        "cpi": "CPI: $0.087"
+      },
+      {
+        "title": "UniJump",
+        "budget": "Budget: 30K",
+        "users": "227,812 new users (mixed/CIS)",
+        "cpi": "CPI: $0.13"
+      },
+      {
+        "title": "PokerGram",
+        "budget": "Budget: 20K",
+        "users": "180,000 new users (mixed geos)",
+        "cpi": "CPI: $0.11"
+      },
+      {
+        "title": "NDA Project",
+        "budget": "Budget: 90K",
+        "users": "420,000 new users (RU/UA)",
+        "cpi": "CPI: $0.25"
+      },
+      {
+        "title": "PlayDeck",
+        "budget": "Budget: 5K",
+        "users": "33,000 new users (CIS region)",
+        "cpi": "CPI: $0.20"
+      },
+      {
+        "title": "NDA",
+        "budget": "Budget: 15K",
+        "users": "208,716 new users (all geos)",
+        "cpi": "CPI: $0.072"
+      },
+      {
+        "title": "NDA",
+        "budget": "Budget: 10K",
+        "users": "112,940 new users (mixed geos)",
+        "cpi": "CPI: $0.086"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Our Achievements",
+    "team": "Our Team",
+    "month": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "items": [
+      {
+        "label": "Client Audience",
+        "description": "Monthly users from Telegram",
+        "postfix": ""
+      },
+      {
+        "label": "Active Clients",
+        "description": "Monthly on a regular basis",
+        "postfix": ""
+      },
+      {
+        "label": "Ad Budget",
+        "description": "At $0.09 per user",
+        "postfix": "$"
+      },
+      {
+        "label": "Ad Reach",
+        "description": "Total campaign reach",
+        "postfix": ""
+      }
+    ]
+  },
+    "services": {
+      "title": "Our Services",
+      "items": [
+        {
+          "label": "Advertising",
+          "title": "Telegram Ads",
+          "description": "We launch and manage tens of thousands of ads in Telegram Ads. Any volume, paying audience, fast results."
+        },
+        {
+          "label": "Creatives",
+          "title": "Creatives",
+          "description": "We create unique copies tailored to your project and the channels where they will run. We use each channel’s slang for maximum conversion."
+        },
+        {
+          "label": "Analytics",
+          "title": "Analytics",
+          "description": "We track every user action and know who actually pays. From click to profit — we optimize campaigns for real ROI."
+        },
+        {
+          "label": "Scaling",
+          "title": "Scaling",
+          "description": "We scale traffic and take projects to the next level. From 10,000 to a million users — we make it happen."
+        }
+      ]
+    },  
+  "about": {
+    "title": "RA Agency — unlimited traffic",
+    "lines": [
+      "We play big.",
+      "Any project. Any market. Any volume.",
+      "50k? 200k? A million? We’ll make it happen.",
+      "RA Agency is a team that breaks the standard rules of Telegram Ads.",
+      "We don’t chase clicks. We bring real users who play, pay, and drive profit.",
+      "You set the goal — we bring as many paying users from any GEO as you need.",
+      "Fast. Scalable. Proven results, nothing less.",
+      "Leave your contact below — we’ll get back to you within 10 minutes and start driving high-quality, paying users today."
+    ]
+  }
+}

@@ -2,17 +2,17 @@ import React from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
+import { useTranslations } from "next-intl";
 
 export const Hero: React.FC = () => {
   const { theme } = useTheme();
+  const t = useTranslations("");
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
- 
 
- 
   return (
     <section
       className={clsx(
@@ -73,7 +73,7 @@ export const Hero: React.FC = () => {
               theme === "dark" ? "text-gray-300" : "text-gray-600"
             )}
           >
-            SIMPLY THE BEST
+            {t("hero.tagline")}
           </span>
         </motion.div>
         <motion.h1
@@ -85,8 +85,8 @@ export const Hero: React.FC = () => {
             theme === "dark" ? "text-white" : "text-gray-900"
           )}
         >
-          RA AGENCY - ВАШ ГІД
-          <br />У СВІТ TELEGRAM ADS
+          <span>{t("hero.titleLine1")}</span>
+          <br /> <span>{t("hero.titleLine2")}</span>
         </motion.h1>
         <motion.button
           whileTap={{ scale: 0.95 }}
@@ -104,7 +104,7 @@ export const Hero: React.FC = () => {
               : "bg-gray-200 text-gray-900 hover:bg-gray-300"
           )}
         >
-          <span>БІЛЬШЕ ПРО НАС</span>
+          <span>{t("hero.buttonFOC")}</span>
           <svg
             className="w-4 h-4 group-hover:translate-x-1 transition-transform"
             fill="none"
@@ -132,8 +132,7 @@ export const Hero: React.FC = () => {
             theme === "dark" ? "text-gray-400" : "text-gray-600"
           )}
         >
-          Наша мета - забезпечити ваш прогрес і допомогти вам реалізувати свої
-          плани та стати частиною історії
+          <span>{t("hero.bottomText")}</span>
         </p>
       </motion.div>
       <motion.div

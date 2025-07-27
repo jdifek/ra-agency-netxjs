@@ -225,7 +225,7 @@ export const ContactForm: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
-              'block text-center font-medium underline mt-4',
+              'px-2 mx-auto py-1 bg-amber-400 w-1/2 transition-all duration-200 ease-in-out hover:bg-amber-500 text-white rounded-full border cursor-pointer block text-center font-medium underline ',
               theme === 'dark' ? 'text-white' : 'text-gray-800'
             )}
           >

@@ -31,7 +31,7 @@ export const PartnersMedia: React.FC = () => {
     <section
       className={clsx(
         "max-w-7xl mx-auto px-6 py-20",
-        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-900"
+        theme === "dark" ? " text-white" : " text-gray-900"
       )}
     >
       <h2

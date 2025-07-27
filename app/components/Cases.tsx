@@ -8,51 +8,15 @@ import { useTheme } from './ThemeProvider';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { useTranslations } from 'next-intl';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-const cases = [
-  {
-    title: 'Telegram Pro: Проєкт A',
-    description:
-      'Збільшення охоплення на 200% за 3 місяці через таргетовану рекламу в Telegram Ads. Запуск по гео, інтересам і поведінці.',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg',
-    platform: 'Telegram',
-    metrics: [
-      { label: 'Охоплення', value: '+200%' },
-      { label: 'Підписники', value: '50K+' },
-      { label: 'CPC', value: '↓ 37%' },
-    ],
-  },
-  {
-    title: 'Facebook Ads: Проєкт B',
-    description:
-      'Оптимізація рекламного бюджету на 30% із підвищенням конверсій завдяки A/B тестуванню креативів і цільової аудиторії.',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png',
-    platform: 'Facebook',
-    metrics: [
-      { label: 'Бюджет', value: '−30%' },
-      { label: 'Ліди', value: '10K+' },
-      { label: 'Конверсія', value: '+18%' },
-    ],
-  },
-  {
-    title: 'Мультилонч: Проєкт C',
-    description:
-      'Запуск вірусної кампанії одночасно на Facebook і Telegram з охопленням 500K і залученням 20K користувачів.',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png',
-    platform: 'FB + Telegram',
-    metrics: [
-      { label: 'Перегляди', value: '500K' },
-      { label: 'Взаємодій', value: '20K+' },
-      { label: 'ROI', value: '4.2x' },
-    ],
-  },
-];
 
 export const Cases: React.FC = () => {
   const { theme } = useTheme();
   const swiperRef = useRef<any>(null);
+  const t = useTranslations('cases');
+  const projects = t.raw('projects');
 
   const goNext = () => {
     if (swiperRef.current) swiperRef.current.slideNext();
@@ -84,19 +48,18 @@ export const Cases: React.FC = () => {
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           )}
         >
-          Наші Кейси
+          {t('title')}
         </motion.h2>
 
         <Swiper
           modules={[Navigation]}
           slidesPerView={1}
-          loop={true} // 🔁 вот эта строка
-
+          loop={true}
           spaceBetween={30}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className="max-w-3xl mx-auto"
         >
-          {cases.map((item, index) => (
+          {projects.map((project: any, index: number) => (
             <SwiperSlide key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -114,8 +77,8 @@ export const Cases: React.FC = () => {
                   <Image
                     width={80}
                     height={80}
-                    src={item.logo}
-                    alt={item.platform}
+                    src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                    alt={project.title}
                     className="w-20 h-20 object-contain"
                   />
                   <span
@@ -124,7 +87,7 @@ export const Cases: React.FC = () => {
                       theme === 'dark' ? 'text-amber-400' : 'text-amber-600'
                     )}
                   >
-                    {item.platform}
+                    Telegram
                   </span>
                   <h3
                     className={clsx(
@@ -132,32 +95,17 @@ export const Cases: React.FC = () => {
                       theme === 'dark' ? 'text-white' : 'text-gray-900'
                     )}
                   >
-                    {item.title}
+                    {project.title}
                   </h3>
-                  <p
+                  <div
                     className={clsx(
-                      'text-base max-w-xl',
+                      'text-base max-w-xl space-y-1',
                       theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
                     )}
                   >
-                    {item.description}
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 w-full">
-                    {item.metrics.map((m, idx) => (
-                      <div
-                        key={idx}
-                        className={clsx(
-                          'rounded-lg py-3 px-4 text-center shadow-sm',
-                          theme === 'dark'
-                            ? 'bg-white/10 text-white'
-                            : 'bg-gray-100 text-gray-900'
-                        )}
-                      >
-                        <div className="text-sm opacity-80">{m.label}</div>
-                        <div className="text-xl font-semibold">{m.value}</div>
-                      </div>
-                    ))}
+                    <p>{project.budget}</p>
+                    <p>{project.users}</p>
+                    <p>{project.cpi}</p>
                   </div>
                 </div>
               </motion.div>
@@ -175,7 +123,7 @@ export const Cases: React.FC = () => {
                 : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
             )}
           >
-            Попередній
+            {t('prev', { default: '← Попередній' })}
           </button>
           <button
             onClick={goNext}
@@ -186,7 +134,7 @@ export const Cases: React.FC = () => {
                 : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
             )}
           >
-            Наступний
+            {t('next', { default: 'Наступний →' })}
           </button>
         </div>
       </div>
