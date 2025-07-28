@@ -2,7 +2,7 @@
 
 import React from "react";
 import clsx from "clsx";
-import { ThemeProvider } from "./components/ThemeProvider";
+import {  useTheme } from "./components/ThemeProvider";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
@@ -15,32 +15,28 @@ import { PartnersMedia } from "./components/PartnersMedia";
 import { Footer } from "./components/Footer";
 
 export default function Home() {
-  return (
-    <ThemeProvider>
-      {(theme) => (
-        <div
-          className={clsx(
-            "min-h-screen",
-            theme === "dark"
-              ? "bg-black text-white"
-              : "bg-gray-50 text-gray-900"
-          )}
-        >
-          <Header />
-          <main>
-            <Hero />
-            <About />
-            <Services />
-            <AchievementsAndTeam />
-            <Cases />
-            <Reviews />
-            <PartnersMedia />
+  const { theme } = useTheme();
 
-            <ContactForm />
-          </main>
-       <Footer />
-        </div>
+  return (
+    <div
+      className={clsx(
+        "min-h-screen",
+        theme === "dark" ? "bg-black text-white" : "bg-gray-50 text-gray-900"
       )}
-    </ThemeProvider>
+    >
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <AchievementsAndTeam />
+        <Cases />
+        <Reviews />
+        <PartnersMedia />
+
+        <ContactForm />
+      </main>
+      <Footer />
+    </div>
   );
 }
