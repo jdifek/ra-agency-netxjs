@@ -30,7 +30,6 @@ const team = [
   { name: "Lily", avatar: "/avatars/nft11.png" },
 ];
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AchievementItem = ({ icon: Icon, item, index }: any) => {
   const { theme } = useTheme();
@@ -70,10 +69,11 @@ const AchievementItem = ({ icon: Icon, item, index }: any) => {
 export const AchievementsAndTeam: React.FC = () => {
   const { theme } = useTheme();
   const t = useTranslations("achievements");
-  const monthKey = new Date().toLocaleString('en-US', { month: 'long' }).toLowerCase();
+  const monthKey = new Date()
+    .toLocaleString("en-US", { month: "long" })
+    .toLowerCase();
   const translatedMonth = t(`month.${monthKey}`);
-  
-  
+
   const achievements = [
     {
       label: t("items.0.label"),
@@ -105,7 +105,7 @@ export const AchievementsAndTeam: React.FC = () => {
       id="achievements"
       className={clsx(
         "relative py-24 overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-100"
+        theme === "dark" ? "bg-black" : "bg-gray-50"
       )}
     >
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -126,8 +126,8 @@ export const AchievementsAndTeam: React.FC = () => {
               theme === "dark" ? "text-amber-400" : "text-amber-600"
             )}
           >
-    ({translatedMonth})
-    </span>
+            ({translatedMonth})
+          </span>
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">

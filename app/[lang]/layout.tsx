@@ -6,6 +6,8 @@ import "../globals.css";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
 import { NextIntlClientProvider } from "next-intl";
+import { CustomCursor } from "../components/CustomCursor";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,18 +49,18 @@ export default async function RootLayout({
 }>) {
   const { lang } = await params;
   let messages;
-  const supportedLangs = ['ru', 'ua', 'en'];
+  const supportedLangs = ["ru", "ua", "en"];
 
-try {
-  if (!supportedLangs.includes(lang)) {
-    throw new Error(`Unsupported lang: ${lang}`);
+  try {
+    if (!supportedLangs.includes(lang)) {
+      throw new Error(`Unsupported lang: ${lang}`);
+    }
+
+    messages = (await import(`../messages/${lang}.json`)).default;
+  } catch (error) {
+    console.error(`Failed to load messages for lang ${lang}:`, error);
+    messages = (await import("../messages/ru.json")).default;
   }
-
-  messages = (await import(`../messages/${lang}.json`)).default;
-} catch (error) {
-  console.error(`Failed to load messages for lang ${lang}:`, error);
-  messages = (await import("../messages/ru.json")).default;
-}
   return (
     <html lang={lang}>
       <Head>
@@ -118,11 +120,14 @@ try {
         </noscript>
 
         <Toaster position="top-right" />
-        <NextIntlClientProvider locale={lang} messages={messages}>
 
-        {children}
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider locale={lang} messages={messages}>
+            <CustomCursor />
 
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

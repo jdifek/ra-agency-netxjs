@@ -8,6 +8,26 @@
     "buttonFOC": "Write us",
     "watermark": "RA AGENCY"
   },
+  "reviews": {
+    "title": "Client Reviews",
+    "items": [
+      {
+        "name": "Olena K.",
+        "text": "RA Agency helped us launch a successful Telegram campaign that brought 150% sales growth!",
+        "rating": 5
+      },
+      {
+        "name": "Mykhailo P.",
+        "text": "Professional approach and clear analytics. Highly recommended for Telegram marketing.",
+        "rating": 4
+      },
+      {
+        "name": "Anna S.",
+        "text": "Thanks to RA Agency, we gained 10K new subscribers in one month!",
+        "rating": 5
+      }
+    ]
+  },
   "cases": {
     "title": "Our Cases",
     "prev": "Previous",
@@ -56,6 +76,32 @@
         "cpi": "CPI: $0.086"
       }
     ]
+  },
+  "contact": {
+    "title": "Have questions or suggestions?",
+    "name": "Your name",
+    "email": "Email",
+    "telegram": "Telegram @username",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "SEND REQUEST",
+    "writeToBot": "Message us on Telegram Bot",
+    "errorFillAll": "Please fill out all fields",
+    "success": "Request sent ✅",
+    "submitError": "An error occurred while sending the form."
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "clients": "Eligible Client Types",
+    "services": "Our Services",
+    "about": "About Us",
+    "resources": "Resources",
+    "partners": "Partnership",
+    "rights": "ALL RIGHTS RESERVED"
+  },
+  "partnersMedia": {
+    "partnersTitle": "Our Partners",
+    "mediaTitle": "Media About Us"
   },
   "achievements": {
     "title": "Our Achievements",

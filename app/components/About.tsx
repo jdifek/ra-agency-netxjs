@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import React from 'react';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { useTheme } from './ThemeProvider';
-import { useTranslations } from 'next-intl';
+import React from "react";
+import clsx from "clsx";
+import { motion } from "framer-motion";
+import { useTheme } from "./ThemeProvider";
+import { useTranslations } from "next-intl";
 
 export const About: React.FC = () => {
   const { theme } = useTheme();
-  const t = useTranslations('about');
+  const t = useTranslations("about");
 
-  const lines = t.raw('lines') as string[];
+  const lines = t.raw("lines") as string[];
 
   return (
     <section
       id="about"
       className={clsx(
-        'relative py-24 overflow-hidden',
-        theme === 'dark' ? 'bg-black' : 'bg-gray-100'
+        "relative py-24 overflow-hidden",
+        theme === "dark" ? "bg-black" : "bg-gray-50"
       )}
     >
       <div className="absolute inset-0">
@@ -32,18 +32,18 @@ export const About: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className={clsx(
-            'text-4xl md:text-5xl font-light mb-4 leading-tight',
-            theme === 'dark' ? 'text-white' : 'text-gray-900'
+            "text-4xl md:text-5xl font-light mb-4 leading-tight",
+            theme === "dark" ? "text-white" : "text-gray-900"
           )}
         >
-          {t('title')}
+          {t("title")}
         </motion.h2>
 
         {/* Divider */}
         <div
           className={clsx(
-            'mx-auto mb-10 h-1 w-20 rounded-full',
-            theme === 'dark' ? 'bg-amber-500' : 'bg-amber-600'
+            "mx-auto mb-10 h-1 w-20 rounded-full",
+            theme === "dark" ? "bg-amber-500" : "bg-amber-600"
           )}
         />
 
@@ -57,7 +57,7 @@ export const About: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
-                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                theme === "dark" ? "text-gray-300" : "text-gray-700"
               )}
             >
               {line}

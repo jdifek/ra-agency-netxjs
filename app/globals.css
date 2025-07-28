@@ -3,12 +3,22 @@
 
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
+
+}
+html, body {
+  cursor: none;
+
+}
+
+input, textarea, button, a {
+  cursor: none;
+
 }
 
 body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 @keyframes spin {

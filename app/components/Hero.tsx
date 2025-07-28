@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
     <section
       className={clsx(
         "relative min-h-screen flex items-center justify-center overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-100"
+        theme === "dark" ? "bg-black" : "bg-gray-50"
       )}
     >
       <div className="absolute inset-0">

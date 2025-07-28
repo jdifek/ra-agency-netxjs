@@ -5,11 +5,11 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 export const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className={clsx(
         'relative p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all duration-300 hover:scale-105',
         theme === 'dark' ? 'bg-black/20 border-gold/20' : 'bg-white/10 border-gray-200'

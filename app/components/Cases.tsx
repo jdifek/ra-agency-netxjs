@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { useTheme } from './ThemeProvider';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import { useTranslations } from 'next-intl';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import React, {useRef } from "react";
+import clsx from "clsx";
+import { motion } from "framer-motion";
+import { useTheme } from "./ThemeProvider";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { useTranslations } from "next-intl";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export const Cases: React.FC = () => {
   const { theme } = useTheme();
   const swiperRef = useRef<any>(null);
-  const t = useTranslations('cases');
-  const projects = t.raw('projects');
+  const t = useTranslations("cases");
+  const projects = t.raw("projects");
+
 
   const goNext = () => {
     if (swiperRef.current) swiperRef.current.slideNext();
@@ -30,8 +31,8 @@ export const Cases: React.FC = () => {
     <section
       id="cases"
       className={clsx(
-        'relative py-24 overflow-hidden',
-        theme === 'dark' ? 'bg-black' : 'bg-gray-100'
+        "relative py-24 overflow-hidden",
+        theme === "dark" ? "bg-black" : "bg-gray-50"
       )}
     >
       <div className="absolute inset-0">
@@ -44,11 +45,11 @@ export const Cases: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className={clsx(
-            'text-4xl md:text-5xl font-light mb-12 text-center leading-tight',
-            theme === 'dark' ? 'text-white' : 'text-gray-900'
+            "text-4xl md:text-5xl font-light mb-12 text-center leading-tight",
+            theme === "dark" ? "text-white" : "text-gray-900"
           )}
         >
-          {t('title')}
+          {t("title")}
         </motion.h2>
 
         <Swiper
@@ -67,10 +68,10 @@ export const Cases: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
                 className={clsx(
-                  'p-8 rounded-2xl border shadow-xl backdrop-blur-sm',
-                  theme === 'dark'
-                    ? 'bg-white/5 border-white/10'
-                    : 'bg-white border-gray-200'
+                  "p-8 rounded-2xl border shadow-xl backdrop-blur-sm",
+                  theme === "dark"
+                    ? "bg-white/5 border-white/10"
+                    : "bg-white border-gray-200"
                 )}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
@@ -83,24 +84,24 @@ export const Cases: React.FC = () => {
                   />
                   <span
                     className={clsx(
-                      'text-sm uppercase tracking-wider font-semibold',
-                      theme === 'dark' ? 'text-amber-400' : 'text-amber-600'
+                      "text-sm uppercase tracking-wider font-semibold",
+                      theme === "dark" ? "text-amber-400" : "text-amber-600"
                     )}
                   >
                     Telegram
                   </span>
                   <h3
                     className={clsx(
-                      'text-2xl font-bold',
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
+                      "text-2xl font-bold",
+                      theme === "dark" ? "text-white" : "text-gray-900"
                     )}
                   >
                     {project.title}
                   </h3>
                   <div
                     className={clsx(
-                      'text-base max-w-xl space-y-1',
-                      theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                      "text-base max-w-xl space-y-1",
+                      theme === "dark" ? "text-gray-300" : "text-gray-600"
                     )}
                   >
                     <p>{project.budget}</p>
@@ -117,24 +118,24 @@ export const Cases: React.FC = () => {
           <button
             onClick={goPrev}
             className={clsx(
-              'px-4 py-2 cursor-pointer rounded-full transition-colors duration-200',
-              theme === 'dark'
-                ? 'bg-white/10 text-white hover:bg-white/20'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+              "px-4 py-2 cursor-pointer rounded-full transition-colors duration-200",
+              theme === "dark"
+                ? "bg-white/10 text-white hover:bg-white/20"
+                : "bg-gray-200 text-gray-900 hover:bg-gray-300"
             )}
           >
-            {t('prev', { default: '← Попередній' })}
+            {t("prev", { default: "← Попередній" })}
           </button>
           <button
             onClick={goNext}
             className={clsx(
-              'px-4 py-2 cursor-pointer rounded-full transition-colors duration-200',
-              theme === 'dark'
-                ? 'bg-white/10 text-white hover:bg-white/20'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+              "px-4 py-2 cursor-pointer rounded-full transition-colors duration-200",
+              theme === "dark"
+                ? "bg-white/10 text-white hover:bg-white/20"
+                : "bg-gray-200 text-gray-900 hover:bg-gray-300"
             )}
           >
-            {t('next', { default: 'Наступний →' })}
+            {t("next", { default: "Наступний →" })}
           </button>
         </div>
       </div>
