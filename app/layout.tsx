@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { ThemeProvider } from 'next-themes';
+import { ThemeProvider } from "./components/ThemeProvider";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
