@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class">
+        <ThemeProvider >
           {children}
         </ThemeProvider>
       </body>
