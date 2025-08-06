@@ -7,15 +7,28 @@ import { useTheme } from "./ThemeProvider";
 export const CustomCursor = () => {
   const { theme } = useTheme();
 
+  const [isMobile, setIsMobile] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-
   const followerX = useSpring(cursorX, { damping: 30, stiffness: 150 });
   const followerY = useSpring(cursorY, { damping: 30, stiffness: 150 });
 
-  const [isHovering, setIsHovering] = useState(false);
+  useEffect(() => {
+    const checkIsMobile = () => {
+      // Если ширина экрана меньше 768px — считаем мобильным
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -23,14 +36,18 @@ export const CustomCursor = () => {
 
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("a, button, input, textarea, select, [role='button']")) {
+      if (
+        target.closest("a, button, input, textarea, select, [role='button']")
+      ) {
         setIsHovering(true);
       }
     };
 
     const onMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("a, button, input, textarea, select, [role='button']")) {
+      if (
+        target.closest("a, button, input, textarea, select, [role='button']")
+      ) {
         setIsHovering(false);
       }
     };
@@ -44,28 +61,28 @@ export const CustomCursor = () => {
       window.removeEventListener("mouseover", onMouseOver);
       window.removeEventListener("mouseout", onMouseOut);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isMobile]);
 
-  // Цвета для dark и light тем — rgba, чтобы точно было видно
+  if (isMobile) return null;
+
   const colors =
     theme === "dark"
       ? {
-          gradientFrom: "rgba(255, 191, 64, 0.6)", // amber-400 translucent
-          gradientVia: "rgba(255, 206, 84, 0.4)", // yellow-400 translucent
-          gradientTo: "rgba(255, 191, 64, 0.3)", // amber-400 translucent
-          mainBg: "rgba(255, 255, 255, 0.9)", // светлый круг
-          mainBorder: "rgba(255, 200, 50, 0.9)", // яркая обводка
+          gradientFrom: "rgba(255, 191, 64, 0.6)",
+          gradientVia: "rgba(255, 206, 84, 0.4)",
+          gradientTo: "rgba(255, 191, 64, 0.3)",
+          mainBg: "rgba(255, 255, 255, 0.9)",
+          mainBorder: "rgba(255, 200, 50, 0.9)",
           boxShadowHover:
             "0 0 24px 6px rgba(255, 200, 50, 0.8), 0 0 40px 12px rgba(255, 200, 50, 0.4)",
           boxShadowNormal: "0 0 10px 2px rgba(255, 200, 50, 0.5)",
         }
       : {
-          // светлая тема — темный курсор
           gradientFrom: "rgba(50, 50, 50, 0.6)",
           gradientVia: "rgba(20, 20, 20, 0.5)",
           gradientTo: "rgba(0, 0, 0, 0.4)",
-          mainBg: "rgba(30, 30, 30, 0.85)", // темный круг
-          mainBorder: "rgba(70, 70, 70, 0.9)", // тёмная обводка
+          mainBg: "rgba(30, 30, 30, 0.85)",
+          mainBorder: "rgba(70, 70, 70, 0.9)",
           boxShadowHover:
             "0 0 24px 6px rgba(50, 50, 50, 0.8), 0 0 40px 12px rgba(50, 50, 50, 0.4)",
           boxShadowNormal: "0 0 10px 2px rgba(50, 50, 50, 0.5)",
@@ -79,7 +96,6 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Хвост */}
       {dots.map(({ size, opacity, blur, delay }, i) => (
         <motion.div
           key={i}
@@ -109,7 +125,6 @@ export const CustomCursor = () => {
         />
       ))}
 
-      {/* Основной курсор */}
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[9999]"
         style={{
@@ -122,8 +137,11 @@ export const CustomCursor = () => {
           border: `2px solid ${colors.mainBorder}`,
           width: isHovering ? 48 : 28,
           height: isHovering ? 48 : 28,
-          boxShadow: isHovering ? colors.boxShadowHover : colors.boxShadowNormal,
-          transition: "width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease",
+          boxShadow: isHovering
+            ? colors.boxShadowHover
+            : colors.boxShadowNormal,
+          transition:
+            "width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease",
         }}
         animate={{
           scale: isHovering ? [1, 1.15, 1] : [1, 1.05, 1],

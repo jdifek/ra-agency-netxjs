@@ -69,7 +69,9 @@ const AchievementItem = ({ icon: Icon, item, index }: any) => {
 export const AchievementsAndTeam: React.FC = () => {
   const { theme } = useTheme();
   const t = useTranslations("achievements");
-  const monthKey = new Date()
+  const monthKey = new Date(
+    new Date().setMonth(new Date().getMonth() - 1)
+  )
     .toLocaleString("en-US", { month: "long" })
     .toLowerCase();
   const translatedMonth = t(`month.${monthKey}`);
@@ -122,11 +124,10 @@ export const AchievementsAndTeam: React.FC = () => {
           {t("title")}{" "}
           <span
             className={clsx(
-              "text-lg ml-2",
               theme === "dark" ? "text-amber-400" : "text-amber-600"
             )}
           >
-            ({translatedMonth})
+            {translatedMonth}
           </span>
         </motion.h2>
 

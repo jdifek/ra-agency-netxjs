@@ -211,17 +211,24 @@ export const ContactForm: React.FC = () => {
             {t('send')}
           </motion.button>
 
-          <a
-            href="https://t.me/your_bot"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={clsx(
-              'px-2 mx-auto py-1 bg-amber-400 w-1/2 transition-all duration-200 ease-in-out hover:bg-amber-500 text-white rounded-full border cursor-pointer block text-center font-medium underline',
-              theme === 'dark' ? 'text-white' : 'text-gray-800'
-            )}
-          >
-            {t('writeToBot')}
-          </a>
+       <div>
+       <motion.a
+  href="https://t.me/your_bot"
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className={clsx(
+    'px-8 py-4 rounded-full cursor-pointer text-white font-medium transition-colors',
+    theme === 'dark'
+      ? 'bg-amber-400  '
+      : 'bg-amber-400  '
+  )}
+>
+  {t('writeToBot')}
+</motion.a>
+       </div>
+
         </motion.form>
       </div>
     </section>
