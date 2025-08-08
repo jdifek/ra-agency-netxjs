@@ -12,6 +12,12 @@
     "partnersTitle": "Наши партнёры",
     "mediaTitle": "СМИ о нас"
   },
+  "header": {
+    "about": "О нас",
+    "services": "Услуги",
+    "cases": "Кейсы",
+    "contact": "Контакты"
+  },
   "contact": {
     "title": "Есть вопрос или предложение?",
     "name": "Ваше имя",

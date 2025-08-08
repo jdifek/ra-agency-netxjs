@@ -8,14 +8,14 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 const logosPartners = [
-  '/photo_2025-07-28_22-58-58.jpg',
-  '/photo_2025-07-28_22-58-59.jpg',
-  '/photo_2025-07-28_22-59-00.jpg',
-  '/photo_2025-07-28_22-59-01.jpg',
-  '/photo_2025-07-28_22-59-03.jpg',
-  '/photo_2025-07-28_22-59-04.jpg',
-  '/photo_2025-07-28_22-59-05.jpg',
-  '/photo_2025-07-28_22-59-06.jpg'
+  { src: '/photo_2025-07-28_22-58-58.jpg', url: 'https://t.me/boinker_bot' },
+  { src: '/photo_2025-07-28_22-58-59.jpg', url: 'https://t.me/unijump_bot' },
+  { src: '/photo_2025-07-28_22-59-00.jpg', url: 'https://t.me/pokergram' },
+  { src: '/photo_2025-07-28_22-59-01.jpg', url: 'https://t.me/playdeck_en' },
+  { src: '/photo_2025-07-28_22-59-03.jpg', url: 'https://t.me/nutsfarm_bot' },
+  { src: '/photo_2025-07-28_22-59-04.jpg', url: 'https://t.me/p00ls_games_bot' },
+  { src: '/photo_2025-07-28_22-59-05.jpg', url: 'https://t.me/LabradorAdventuresBot' },
+  { src: '/photo_2025-07-28_22-59-06.jpg', url: 'https://ggate.media/' }
 ];
 
 const logosMedia = [
@@ -46,24 +46,27 @@ export const PartnersMedia: React.FC = () => {
       </h2>
 
       <div className="flex gap-16 items-center justify-center flex-wrap">
-        {logosPartners.map((logo, i) => (
-          <motion.div
-            key={logo}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
-            className="flex items-center justify-center"
-          >
-            <Image
-              width={66}
-              height={66}
-              src={logo}
-              alt={`Partner ${i + 1}`}
-              className="max-h-16 object-contain filter grayscale hover:filter-none transition duration-300"
-            />
-          </motion.div>
-        ))}
-      </div>
+  {logosPartners.map((logo, i) => (
+    <motion.div
+      key={logo.src}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
+      className="flex items-center justify-center"
+    >
+      <a href={logo.url} target="_blank" rel="noopener noreferrer">
+        <Image
+          width={66}
+          height={66}
+          src={logo.src}
+          alt={`Partner ${i + 1}`}
+          className="w-16 h-16 object-cover rounded-full transition duration-300"
+        />
+      </a>
+    </motion.div>
+  ))}
+</div>
+
 
       <h2
         className={clsx(

@@ -77,6 +77,12 @@
       }
     ]
   },
+  "header": {
+    "about": "About",
+    "services": "Services",
+    "cases": "Cases",
+    "contact": "Contact"
+  },
   "contact": {
     "title": "Have questions or suggestions?",
     "name": "Your name",

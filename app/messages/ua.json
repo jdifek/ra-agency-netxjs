@@ -168,6 +168,12 @@
       }
     ]
   },
+  "header": {
+  "about": "Про нас",
+  "services": "Послуги",
+  "cases": "Кейси",
+  "contact": "Контакти"
+},
   "about": {
     "title": "RA Agency — трафік без обмежень",
     "lines": [
