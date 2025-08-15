@@ -45,7 +45,7 @@ const AchievementItem = ({ icon: Icon, item, index }: any) => {
         "group p-6 rounded-2xl shadow-md transition-all duration-300 hover:scale-105 hover:shadow-2xl",
         theme === "dark"
           ? "bg-white/5 text-white border border-white/10 hover:bg-white/10"
-          : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50"
+          : "bg-white text-gray-900 border border-gray-200 hover:"
       )}
     >
       <Icon className="mx-auto w-8 h-8 mb-2 opacity-70 group-hover:text-amber-400 transition-colors" />
@@ -107,7 +107,7 @@ export const AchievementsAndTeam: React.FC = () => {
       id="achievements"
       className={clsx(
         "relative py-24 overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-50"
+        theme === "dark" ? "" : ""
       )}
     >
       <div className="max-w-6xl mx-auto px-6 relative z-10">

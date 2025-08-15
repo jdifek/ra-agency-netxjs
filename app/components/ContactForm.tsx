@@ -59,7 +59,7 @@ export const ContactForm: React.FC = () => {
       id="contact"
       className={clsx(
         'relative py-32 overflow-hidden',
-        theme === 'dark' ? 'bg-black' : 'bg-gray-50'
+        theme === 'dark' ? '' : ''
       )}
     >
       {/* Background Decorations */}

@@ -27,7 +27,7 @@ export const Reviews: React.FC = () => {
       id="reviews"
       className={clsx(
         "relative py-24 overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-50"
+        theme === "dark" ? "" : ""
       )}
     >
       <div className="absolute inset-0">

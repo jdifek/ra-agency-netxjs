@@ -23,8 +23,8 @@ export const Services: React.FC = () => {
     <section
       id="services"
       className={clsx(
-        "relative py-24 overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-50"
+        "relative  py-24 overflow-hidden",
+        theme === "dark" ? "" : ""
       )}
     >
       {/* Background grid */}

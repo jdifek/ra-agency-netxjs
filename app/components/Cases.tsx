@@ -32,7 +32,7 @@ export const Cases: React.FC = () => {
       id="cases"
       className={clsx(
         "relative py-24 overflow-hidden",
-        theme === "dark" ? "bg-black" : "bg-gray-50"
+        theme === "dark" ? "" : ""
       )}
     >
       <div className="absolute inset-0">
