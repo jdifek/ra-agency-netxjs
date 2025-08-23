@@ -6,7 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { Logo3D } from "./Logo3D";
+import { Logo3DHeader } from "./Logo3DHeader";
 
 export const Header: React.FC = () => {
   const { theme } = useTheme();
@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 right-0 z-50 backdrop-blur-md",
+        "fixed top-0 left-0 right-0 z-[999] backdrop-blur-md",
         theme === "dark" ? " border-gold/10" : "bg-white/10 border-gray-200"
       )}
     >
@@ -37,22 +37,25 @@ export const Header: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <Logo3D url="/2.glb" size={80} />
+            <Logo3DHeader url="/2.glb" size={80} />
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className={clsx(
-                  "transition-colors duration-300 hover:text-gold",
-                  theme === "dark" ? "text-white/70" : "text-gray-600"
-                )}
-              >
-                {label}
-              </a>
-            ))}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navItems.map(({ label, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className={clsx(
+                    "transition-all duration-300 transform hover:scale-110",
+                    "hover:text-gold",
+                    theme === "dark" ? "text-white/70" : "text-gray-600"
+                  )}
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
           </nav>
 
           <div className="flex gap-2">

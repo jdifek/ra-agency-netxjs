@@ -1,22 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-const logosPartners = [
-  { src: '/photo_2025-07-28_22-58-58.jpg', url: 'https://t.me/boinker_bot' },
-  { src: '/photo_2025-07-28_22-58-59.jpg', url: 'https://t.me/unijump_bot' },
-  { src: '/photo_2025-07-28_22-59-00.jpg', url: 'https://t.me/pokergram' },
-  { src: '/photo_2025-07-28_22-59-01.jpg', url: 'https://t.me/playdeck_en' },
-  { src: '/photo_2025-07-28_22-59-03.jpg', url: 'https://t.me/nutsfarm_bot' },
-  { src: '/photo_2025-07-28_22-59-04.jpg', url: 'https://t.me/p00ls_games_bot' },
-  { src: '/photo_2025-07-28_22-59-05.jpg', url: 'https://t.me/LabradorAdventuresBot' },
-  { src: '/photo_2025-07-28_22-59-06.jpg', url: 'https://ggate.media/' }
-];
+type Partner = {
+  id: number;
+  logo: string;
+  link: string;
+};
 
 const logosMedia = [
   'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Forbes_logo.svg/768px-Forbes_logo.svg.png?20240111043940',
@@ -29,6 +24,43 @@ export const PartnersMedia: React.FC = () => {
   const { theme } = useTheme();
   const t = useTranslations('partnersMedia');
 
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [visiblePartners, setVisiblePartners] = useState<Partner[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const res = await fetch('http://localhost:3002/partners');
+        const data: Partner[] = await res.json();
+        setPartners(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Ошибка при загрузке партнеров:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchPartners();
+  }, []);
+
+  useEffect(() => {
+    const updateVisiblePartners = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setVisiblePartners(partners.slice(0, 15));
+      } else {
+        setVisiblePartners(partners.slice(0, 30));
+      }
+    };
+
+    updateVisiblePartners();
+    window.addEventListener('resize', updateVisiblePartners);
+    return () => window.removeEventListener('resize', updateVisiblePartners);
+  }, [partners]);
+
+  const skeletonCount = 20;
+
   return (
     <section
       className={clsx(
@@ -36,44 +68,41 @@ export const PartnersMedia: React.FC = () => {
         theme === 'dark' ? ' text-white' : ' text-gray-900'
       )}
     >
-      <h2
-        className={clsx(
-          'text-3xl font-semibold mb-12 text-center',
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        )}
-      >
+      <h2 className="text-3xl font-semibold mb-12 text-center">
         {t('partnersTitle')}
       </h2>
 
-      <div className="flex gap-16 items-center justify-center flex-wrap">
-  {logosPartners.map((logo, i) => (
-    <motion.div
-      key={logo.src}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
-      className="flex items-center justify-center"
-    >
-      <a href={logo.url} target="_blank" rel="noopener noreferrer">
-        <Image
-          width={66}
-          height={66}
-          src={logo.src}
-          alt={`Partner ${i + 1}`}
-          className="w-16 h-16 object-cover rounded-full transition duration-300"
-        />
-      </a>
-    </motion.div>
-  ))}
-</div>
+      <div className="flex gap-6 items-center justify-center flex-wrap">
+        {isLoading
+          ? Array.from({ length: skeletonCount }).map((_, i) => (
+              <div
+                key={i}
+                className={clsx(
+                  'w-16 h-16 rounded-full animate-pulse',
+                  theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
+                )}
+              />
+            ))
+          : visiblePartners.map((partner, i) => (
+              <motion.div
+                key={partner.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.05, type: 'spring', stiffness: 100 }}
+                className="flex items-center justify-center"
+              >
+                <a href={partner.link} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={partner.logo}
+                    alt={`Partner ${i + 1}`}
+                    className="w-16 h-16 hover:scale-110 object-cover rounded-full transition duration-300"
+                  />
+                </a>
+              </motion.div>
+            ))}
+      </div>
 
-
-      <h2
-        className={clsx(
-          'text-3xl font-semibold mt-20 mb-12 text-center',
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        )}
-      >
+      <h2 className="text-3xl font-semibold mt-20 mb-12 text-center">
         {t('mediaTitle')}
       </h2>
 

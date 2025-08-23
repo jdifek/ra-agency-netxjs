@@ -18,7 +18,7 @@ export const ContactForm: React.FC = () => {
     message: ''
   });
 
-  const [contactMethod, setContactMethod] = useState<'email' | 'telegram'>('email');
+  const [contactMethod, setContactMethod] = useState<'email' | 'telegram'>('telegram');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,30 +108,32 @@ export const ContactForm: React.FC = () => {
         </motion.h2>
 
         {/* Method Switch */}
-        <div className="flex justify-center gap-4 mb-4">
-          <button
-            type="button"
-            onClick={() => setContactMethod('email')}
-            className={clsx(
-              'px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ease-in-out hover:bg-amber-500',
-              contactMethod === 'email' ? 'bg-amber-400 text-white' : 'bg-transparent',
-              theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300/40 text-gray-700'
-            )}
-          >
-            Email
-          </button>
-          <button
-            type="button"
-            onClick={() => setContactMethod('telegram')}
-            className={clsx(
-              'px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ease-in-out hover:bg-amber-500',
-              contactMethod === 'telegram' ? 'bg-amber-400 text-white' : 'bg-transparent',
-              theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300/40 text-gray-700'
-            )}
-          >
-            Telegram
-          </button>
-        </div>
+<div className="flex justify-center gap-4 mb-4">
+  <button
+    type="button"
+    onClick={() => setContactMethod('telegram')}
+    className={clsx(
+      'px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ease-in-out hover:bg-amber-500',
+      contactMethod === 'telegram' ? 'bg-amber-400 text-white' : 'bg-transparent',
+      theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300/40 text-gray-700'
+    )}
+  >
+    Telegram
+  </button>
+
+  <button
+    type="button"
+    onClick={() => setContactMethod('email')}
+    className={clsx(
+      'px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ease-in-out hover:bg-amber-500',
+      contactMethod === 'email' ? 'bg-amber-400 text-white' : 'bg-transparent',
+      theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300/40 text-gray-700'
+    )}
+  >
+    Email
+  </button>
+</div>
+
 
         <motion.form
           initial={{ opacity: 0, y: 40 }}

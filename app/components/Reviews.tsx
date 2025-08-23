@@ -1,26 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-const photos = [
-  "https://randomuser.me/api/portraits/women/44.jpg",
-  "https://randomuser.me/api/portraits/men/32.jpg",
-  "https://randomuser.me/api/portraits/women/68.jpg",
-];
+type Review = {
+  id: number;
+  projectLogo: string;
+  projectName: string;
+  authorName: string;
+  authorRole: string;
+  text: string;
+  createdAt: string;
+};
 
 export const Reviews: React.FC = () => {
   const { theme } = useTheme();
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const t = useTranslations("reviews");
-  const reviews = t.raw("items") as Array<{
-    name: string;
-    text: string;
-    rating: number;
-  }>;
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch("http://localhost:3002/reviews");
+        const data = await res.json();
+        setReviews(data);
+      } catch (error) {
+        console.error("Ошибка при загрузке отзывов:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  const skeletonArray = Array(3).fill(null); // количество скелетонов
 
   return (
     <section
@@ -44,71 +62,73 @@ export const Reviews: React.FC = () => {
             theme === "dark" ? "text-white" : "text-gray-900"
           )}
         >
-          {t("title")}
-        </motion.h2>
+  {t("title")}
+  </motion.h2>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={review.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className={clsx(
-                "p-6 rounded-2xl border shadow-sm flex flex-col items-center text-center h-full transition-all",
-                theme === "dark"
-                  ? "bg-white/5 border-white/10 hover:shadow-md"
-                  : "bg-white border-gray-200 hover:shadow-md"
-              )}
-            >
-              <Image
-                width={64}
-                height={64}
-                src={photos[index % photos.length]}
-                alt={review.name}
-                className="w-16 h-16 rounded-full mb-4 object-cover border-2"
-              />
-              <h3
-                className={clsx(
-                  "text-lg font-semibold mb-1",
-                  theme === "dark" ? "text-white" : "text-gray-900"
-                )}
-              >
-                {review.name}
-              </h3>
-
-              <div className="flex items-center justify-center gap-0.5 mb-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg
-                    key={i}
+          {isLoading
+            ? skeletonArray.map((_, i) => (
+                <div
+                  key={i}
+                  className={clsx(
+                    "p-6 rounded-2xl border shadow-sm flex flex-col items-center text-center h-full animate-pulse",
+                    theme === "dark"
+                      ? "bg-white/5 border-white/10"
+                      : "bg-white border-gray-200"
+                  )}
+                >
+                  <div className="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-700 mb-4" />
+                  <div className="h-4 w-2/3 bg-gray-300 dark:bg-gray-600 rounded mb-2" />
+                  <div className="h-3 w-1/2 bg-gray-200 dark:bg-gray-500 rounded mb-4" />
+                  <div className="h-3 w-full bg-gray-200 dark:bg-gray-500 rounded mb-1" />
+                  <div className="h-3 w-5/6 bg-gray-200 dark:bg-gray-500 rounded" />
+                </div>
+              ))
+            : reviews.map((review, index) => (
+                <motion.div
+                  key={review.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  className={clsx(
+                    "p-6 rounded-2xl border shadow-sm flex flex-col items-center text-center h-full transition-all",
+                    theme === "dark"
+                      ? "bg-white/5 border-white/10 hover:shadow-md"
+                      : "bg-white border-gray-200 hover:shadow-md"
+                  )}
+                >
+                  <img
+                    src={review.projectLogo}
+                    alt={review.projectName}
+                    className="w-16 h-16 rounded-full mb-4 object-cover"
+                  />
+                  <h3
                     className={clsx(
-                      "w-4 h-4",
-                      i < review.rating
-                        ? theme === "dark"
-                          ? "text-amber-400"
-                          : "text-amber-500"
-                        : theme === "dark"
-                        ? "text-gray-600"
-                        : "text-gray-300"
+                      "text-lg font-semibold mb-1",
+                      theme === "dark" ? "text-white" : "text-gray-900"
                     )}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.065 3.272a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.065 3.272c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.783.57-1.838-.197-1.538-1.118l1.065-3.272a1 1 0 00-.364-1.118L2.475 8.7c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.065-3.272z" />
-                  </svg>
-                ))}
-              </div>
-
-              <p
-                className={clsx(
-                  "text-sm leading-relaxed italic",
-                  theme === "dark" ? "text-gray-400" : "text-gray-600"
-                )}
-              >
-                “{review.text}”
-              </p>
-            </motion.div>
-          ))}
+                    {review.authorName}
+                  </h3>
+                  <p
+                    className={clsx(
+                      "text-sm mb-2",
+                      theme === "dark" ? "text-gray-400" : "text-gray-600"
+                    )}
+                  >
+                    {review.authorRole} @ {review.projectName}
+                  </p>
+                  <p
+                    className={clsx(
+                      "text-sm leading-relaxed italic",
+                      theme === "dark" ? "text-gray-400" : "text-gray-600"
+                    )}
+                  >
+                    “{review.text}”
+                  </p>
+                </motion.div>
+              ))}
         </div>
       </div>
     </section>

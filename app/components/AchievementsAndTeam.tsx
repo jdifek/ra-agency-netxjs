@@ -6,7 +6,6 @@ import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
 import { Users, Eye, DollarSign, Activity } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,17 +16,61 @@ import { useTranslations } from "next-intl";
 const icons = [Eye, Users, DollarSign, Activity];
 
 const team = [
-  { name: "Ruslan", avatar: "/avatars/nft1.png" },
-  { name: "Anton", avatar: "/avatars/nft2.png" },
-  { name: "Alex", avatar: "/avatars/nft3.png" },
-  { name: "Nick", avatar: "/avatars/nft4.png" },
-  { name: "Max", avatar: "/avatars/nft5.png" },
-  { name: "Dan", avatar: "/avatars/nft6.png" },
-  { name: "Eva", avatar: "/avatars/nft7.png" },
-  { name: "Mia", avatar: "/avatars/nft8.png" },
-  { name: "Anna", avatar: "/avatars/nft9.png" },
-  { name: "Sara", avatar: "/avatars/nft10.png" },
-  { name: "Lily", avatar: "/avatars/nft11.png" },
+  {
+    name: "Ruslan",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Anton",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Alex",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Nick",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Max",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Dan",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Eva",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Mia",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Anna",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Sara",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
+  {
+    name: "Lily",
+    avatar:
+      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  },
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -69,9 +112,7 @@ const AchievementItem = ({ icon: Icon, item, index }: any) => {
 export const AchievementsAndTeam: React.FC = () => {
   const { theme } = useTheme();
   const t = useTranslations("achievements");
-  const monthKey = new Date(
-    new Date().setMonth(new Date().getMonth() - 1)
-  )
+  const monthKey = new Date(new Date().setMonth(new Date().getMonth() - 1))
     .toLocaleString("en-US", { month: "long" })
     .toLowerCase();
   const translatedMonth = t(`month.${monthKey}`);
@@ -171,16 +212,15 @@ export const AchievementsAndTeam: React.FC = () => {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="flex flex-col items-center space-y-2"
               >
-                <Image
+                <img
                   src={member.avatar}
                   alt={member.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full object-cover border-2 border-amber-500"
+                  className="rounded-2xl object-cover border border-amber-500 w-[220px] h-[280px]"
                 />
+
                 <div
                   className={clsx(
-                    "text-sm font-medium",
+                    "text-sm font-medium mt-2",
                     theme === "dark" ? "text-white" : "text-gray-800"
                   )}
                 >

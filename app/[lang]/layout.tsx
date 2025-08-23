@@ -8,6 +8,7 @@ import Head from "next/head";
 import { NextIntlClientProvider } from "next-intl";
 import { CustomCursor } from "../components/CustomCursor";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { BackgroundClouds } from "../components/BackgroundClouds";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -123,7 +124,9 @@ export default async function RootLayout({
 
         <ThemeProvider>
           <NextIntlClientProvider locale={lang} messages={messages}>
-            <CustomCursor />
+          {/* <BackgroundClouds /> */}
+
+            {/* <CustomCursor /> */}
 
             {children}
           </NextIntlClientProvider>
