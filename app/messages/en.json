@@ -32,50 +32,33 @@
     "title": "Our Cases",
     "prev": "Previous",
     "next": "Next",
-    "projects": [
-      {
-        "title": "Boinkers",
-        "budget": "Budget: 50K",
-        "users": "571,722 new users (all geos)",
-        "cpi": "CPI: $0.087"
-      },
-      {
-        "title": "UniJump",
-        "budget": "Budget: 30K",
-        "users": "227,812 new users (mixed/CIS)",
-        "cpi": "CPI: $0.13"
-      },
-      {
-        "title": "PokerGram",
-        "budget": "Budget: 20K",
-        "users": "180,000 new users (mixed geos)",
-        "cpi": "CPI: $0.11"
-      },
-      {
-        "title": "NDA Project",
-        "budget": "Budget: 90K",
-        "users": "420,000 new users (RU/UA)",
-        "cpi": "CPI: $0.25"
-      },
-      {
-        "title": "PlayDeck",
-        "budget": "Budget: 5K",
-        "users": "33,000 new users (CIS region)",
-        "cpi": "CPI: $0.20"
-      },
-      {
-        "title": "NDA",
-        "budget": "Budget: 15K",
-        "users": "208,716 new users (all geos)",
-        "cpi": "CPI: $0.072"
-      },
-      {
-        "title": "NDA",
-        "budget": "Budget: 10K",
-        "users": "112,940 new users (mixed geos)",
-        "cpi": "CPI: $0.086"
-      }
-    ]
+   "projects": [
+  {
+    "title": "Boinkers",
+    "budget": "Budget: 50,000$",
+    "users": "New user: 571,722",
+    "geo": "GEOs: All countries",
+    "cpi": "CPI: $0.087",
+    "img": "/photo_2025-07-28_22-58-58.jpg"
+  },
+  {
+    "title": "Uni Jump",
+    "budget": "Budget: 30,000$",
+    "users": "New user: 227,812",
+    "geo": "GEOs: CIS countries",
+    "cpi": "CPI: $0.13",
+    "img": "/photo_2025-07-28_22-58-59.jpg"
+  },
+  {
+    "title": "PokerGram",
+    "budget": "Budget: 20,000$",
+    "users": "New user: 180,000",
+    "geo": "GEOs: Mixed geos",
+    "cpi": "CPI: $0.11",
+    "img": "/photo_2025-07-28_22-59-00.jpg"
+  }
+]
+
   },
   "header": {
     "about": "About",

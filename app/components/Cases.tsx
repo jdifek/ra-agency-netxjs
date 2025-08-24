@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, {useRef } from "react";
+import React, { useRef } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useTranslations } from "next-intl";
@@ -17,7 +16,6 @@ export const Cases: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const t = useTranslations("cases");
   const projects = t.raw("projects");
-
 
   const goNext = () => {
     if (swiperRef.current) swiperRef.current.slideNext();
@@ -75,21 +73,13 @@ export const Cases: React.FC = () => {
                 )}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <Image
+                  <img
                     width={80}
                     height={80}
-                    src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                    src={project.img}
                     alt={project.title}
                     className="w-20 h-20 object-contain"
                   />
-                  <span
-                    className={clsx(
-                      "text-sm uppercase tracking-wider font-semibold",
-                      theme === "dark" ? "text-amber-400" : "text-amber-600"
-                    )}
-                  >
-                    Telegram
-                  </span>
                   <h3
                     className={clsx(
                       "text-2xl font-bold",
@@ -100,12 +90,13 @@ export const Cases: React.FC = () => {
                   </h3>
                   <div
                     className={clsx(
-                      "text-base max-w-xl space-y-1",
+                      "text-base max-w-xl space-y-2 text-center",
                       theme === "dark" ? "text-gray-300" : "text-gray-600"
                     )}
                   >
                     <p>{project.budget}</p>
                     <p>{project.users}</p>
+                    <p>{project.geo}</p>
                     <p>{project.cpi}</p>
                   </div>
                 </div>
