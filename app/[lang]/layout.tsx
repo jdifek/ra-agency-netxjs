@@ -124,9 +124,9 @@ export default async function RootLayout({
 
         <ThemeProvider>
           <NextIntlClientProvider locale={lang} messages={messages}>
-          {/* <BackgroundClouds /> */}
+          <BackgroundClouds />
 
-            {/* <CustomCursor /> */}
+            <CustomCursor />
 
             {children}
           </NextIntlClientProvider>

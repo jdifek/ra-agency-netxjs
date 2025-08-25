@@ -66,24 +66,27 @@ export const CustomCursor = () => {
 
   if (isMobile) return null;
 
-  const colors =
-    theme === "dark"
-      ? {
-          bigCloud: "rgba(255, 191, 64, 0.8)",
-          mediumCloud: "rgba(255, 206, 84, 0.9)",
-          smallCloud: "rgba(255, 220, 120, 1.0)",
-          cloudGlow: "rgba(255, 191, 64, 1.0)",
-          mainBorder: "rgba(255, 200, 50, 1)",
-          innerDot: "rgba(255, 255, 255, 1)",
-        }
-      : {
-          bigCloud: "rgba(50, 50, 50, 0.6)",
-          mediumCloud: "rgba(30, 30, 30, 0.7)",
-          smallCloud: "rgba(20, 20, 20, 0.8)",
-          cloudGlow: "rgba(0, 0, 0, 0.8)",
-          mainBorder: "rgba(70, 70, 70, 1)",
-          innerDot: "rgba(0, 0, 0, 1)",
-        };
+  const colors = theme === "dark" 
+    ? {
+        primary: "#ff6b35",
+        secondary: "#f7931e", 
+        accent: "#ffcd3c",
+        gradient1: "#ff8a65",
+        gradient2: "#ffb74d",
+        gradient3: "#ffd54f",
+        ringColor: "#ff6b35",
+        innerDot: "#ffffff"
+      }
+    : {
+        primary: "#667eea",
+        secondary: "#764ba2",
+        accent: "#a8edea", 
+        gradient1: "#f093fb",
+        gradient2: "#f5576c",
+        gradient3: "#4facfe",
+        ringColor: "#667eea",
+        innerDot: "#ffffff"
+      };
 
   return (
     <>
@@ -101,20 +104,20 @@ export const CustomCursor = () => {
           filter: "blur(90px)",
           opacity: 0.9,
           transition: "width 0.4s ease, height 0.4s ease",
-          background: `radial-gradient(circle at center,
-            rgba(255, 191, 64, 0.8) 0%,
-            rgba(255, 120, 200, 0.6) 30%,
-            rgba(64, 191, 255, 0.8) 70%
-          )`,
-          backgroundSize: "300% 300%",
         }}
         animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          background: [
+            `radial-gradient(circle at center, ${colors.primary}80 0%, ${colors.secondary}60 30%, ${colors.accent}40 70%)`,
+            `radial-gradient(circle at center, ${colors.secondary}80 0%, ${colors.accent}60 30%, ${colors.gradient1}40 70%)`,
+            `radial-gradient(circle at center, ${colors.accent}80 0%, ${colors.gradient1}60 30%, ${colors.gradient2}40 70%)`,
+            `radial-gradient(circle at center, ${colors.gradient1}80 0%, ${colors.gradient2}60 30%, ${colors.gradient3}40 70%)`,
+            `radial-gradient(circle at center, ${colors.primary}80 0%, ${colors.secondary}60 30%, ${colors.accent}40 70%)`
+          ],
           opacity: [0.85, 1, 0.85],
         }}
         transition={{
           repeat: Infinity,
-          duration: 15,
+          duration: 12,
           ease: "linear",
         }}
       />
@@ -129,18 +132,24 @@ export const CustomCursor = () => {
           y: "-50%",
           width: isHovering ? "450px" : "400px",
           height: isHovering ? "450px" : "400px",
-          background: `radial-gradient(circle at center, ${colors.mediumCloud} 0%, ${colors.mediumCloud.replace(/[\d\.]+\)$/g, "0.4)")} 60%, transparent 85%)`,
           borderRadius: "50%",
           filter: "blur(50px)",
           opacity: 0.9,
           transition: "width 0.3s ease, height 0.3s ease",
         }}
         animate={{
+          background: [
+            `radial-gradient(circle at center, ${colors.secondary}70 0%, ${colors.accent}50 60%, transparent 85%)`,
+            `radial-gradient(circle at center, ${colors.accent}70 0%, ${colors.gradient1}50 60%, transparent 85%)`,
+            `radial-gradient(circle at center, ${colors.gradient1}70 0%, ${colors.gradient2}50 60%, transparent 85%)`,
+            `radial-gradient(circle at center, ${colors.gradient2}70 0%, ${colors.primary}50 60%, transparent 85%)`,
+            `radial-gradient(circle at center, ${colors.secondary}70 0%, ${colors.accent}50 60%, transparent 85%)`
+          ],
           opacity: [0.8, 0.9, 0.8],
         }}
         transition={{
           repeat: Infinity,
-          duration: 12,
+          duration: 10,
           ease: "easeInOut",
         }}
       />
@@ -155,18 +164,24 @@ export const CustomCursor = () => {
           y: "-50%",
           width: isHovering ? "250px" : "200px",
           height: isHovering ? "250px" : "200px",
-          background: `radial-gradient(circle at center, ${colors.smallCloud} 0%, ${colors.smallCloud.replace(/[\d\.]+\)$/g, "0.5)")} 70%, transparent 90%)`,
           borderRadius: "50%",
           filter: "blur(30px)",
           opacity: 0.9,
           transition: "width 0.2s ease, height 0.2s ease",
         }}
         animate={{
+          background: [
+            `radial-gradient(circle at center, ${colors.accent}75 0%, ${colors.gradient1}55 70%, transparent 90%)`,
+            `radial-gradient(circle at center, ${colors.gradient1}75 0%, ${colors.gradient2}55 70%, transparent 90%)`,
+            `radial-gradient(circle at center, ${colors.gradient2}75 0%, ${colors.gradient3}55 70%, transparent 90%)`,
+            `radial-gradient(circle at center, ${colors.gradient3}75 0%, ${colors.primary}55 70%, transparent 90%)`,
+            `radial-gradient(circle at center, ${colors.accent}75 0%, ${colors.gradient1}55 70%, transparent 90%)`
+          ],
           opacity: [0.85, 1, 0.85],
         }}
         transition={{
           repeat: Infinity,
-          duration: 10,
+          duration: 8,
           ease: "easeInOut",
         }}
       />
@@ -182,13 +197,51 @@ export const CustomCursor = () => {
           width: isHovering ? "48px" : "32px",
           height: isHovering ? "48px" : "32px",
           borderRadius: "50%",
-          border: `2px solid ${colors.mainBorder}`,
+          border: `2px solid ${colors.ringColor}`,
           background: "transparent",
-          boxShadow: `0 0 20px ${colors.cloudGlow}, inset 0 0 20px ${colors.cloudGlow}`,
+          boxShadow: `0 0 20px ${colors.primary}, inset 0 0 20px ${colors.primary}`,
           transition: "all 0.3s ease",
         }}
         animate={{
+          borderColor: [colors.primary, colors.secondary, colors.accent, colors.gradient1, colors.primary],
+          boxShadow: [
+            `0 0 20px ${colors.primary}, inset 0 0 20px ${colors.primary}`,
+            `0 0 20px ${colors.secondary}, inset 0 0 20px ${colors.secondary}`,
+            `0 0 20px ${colors.accent}, inset 0 0 20px ${colors.accent}`,
+            `0 0 20px ${colors.gradient1}, inset 0 0 20px ${colors.gradient1}`,
+            `0 0 20px ${colors.primary}, inset 0 0 20px ${colors.primary}`
+          ],
           opacity: [0.85, 1, 0.85],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 6,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Центральная точка */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-[2]"
+        style={{
+          translateX: followerX,
+          translateY: followerY,
+          x: "-50%",
+          y: "-50%",
+          width: "4px",
+          height: "4px",
+          borderRadius: "50%",
+          background: colors.innerDot,
+          boxShadow: `0 0 8px ${colors.primary}`,
+        }}
+        animate={{
+          boxShadow: [
+            `0 0 8px ${colors.primary}`,
+            `0 0 12px ${colors.secondary}`,
+            `0 0 8px ${colors.accent}`,
+            `0 0 10px ${colors.gradient1}`,
+            `0 0 8px ${colors.primary}`
+          ],
         }}
         transition={{
           repeat: Infinity,
