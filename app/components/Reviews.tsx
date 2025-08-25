@@ -25,7 +25,7 @@ export const Reviews: React.FC = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("http://localhost:3002/reviews");
+        const res = await fetch("https://ra-agency-back-production-246f.up.railway.app/reviews");
         const data = await res.json();
         setReviews(data);
       } catch (error) {

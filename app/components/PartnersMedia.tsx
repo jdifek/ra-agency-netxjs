@@ -31,7 +31,7 @@ export const PartnersMedia: React.FC = () => {
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        const res = await fetch('http://localhost:3002/partners');
+        const res = await fetch('https://ra-agency-back-production-246f.up.railway.app/partners');
         const data: Partner[] = await res.json();
         setPartners(data);
         setIsLoading(false);
