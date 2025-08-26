@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
@@ -15,63 +15,7 @@ import { useTranslations } from "next-intl";
 
 const icons = [Eye, Users, DollarSign, Activity];
 
-const team = [
-  {
-    name: "Ruslan",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Anton",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Alex",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Nick",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Max",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Dan",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Eva",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Mia",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Anna",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Sara",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-  {
-    name: "Lily",
-    avatar:
-      "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
-  },
-];
+
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AchievementItem = ({ icon: Icon, item, index }: any) => {
@@ -117,7 +61,21 @@ export const AchievementsAndTeam: React.FC = () => {
     .toLocaleString("en-US", { month: "long" })
     .toLowerCase();
   const translatedMonth = t(`month.${monthKey}`);
+  const [team, setTeam] = useState<{ name: string; avatar: string }[]>([]);
 
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const res = await fetch("https://back-production-fe07.up.railway.app/team"); // ⚠️ адаптируй под прод URL
+        const data = await res.json();
+        setTeam(data);
+      } catch (error) {
+        console.error("Ошибка загрузки команды:", error);
+      }
+    };
+  
+    fetchTeam();
+  }, []);
   const achievements = [
     {
       label: t("items.0.label"),
@@ -144,6 +102,8 @@ export const AchievementsAndTeam: React.FC = () => {
       value: 810000000,
     },
   ];
+
+  
   return (
     <section
       id="achievements"
