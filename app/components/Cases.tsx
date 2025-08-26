@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -15,6 +15,7 @@ export const Cases: React.FC = () => {
   const { theme } = useTheme();
   const swiperRef = useRef<any>(null);
   const t = useTranslations("cases");
+  const locale = useLocale(); // Получаем текущую локаль: 'en', 'ua', 'ru'
 
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,12 @@ export const Cases: React.FC = () => {
 
     fetchCases();
   }, []);
+
+  // Вспомогательная функция для получения текста по локали
+  const getLocalized = (item: any, key: string) => {
+    const localizedKey = `${key}_${locale}`;
+    return item[localizedKey] || item[`${key}_en`] || "";
+  };
 
   return (
     <section
@@ -95,7 +102,7 @@ export const Cases: React.FC = () => {
                       width={80}
                       height={80}
                       src={project.img}
-                      alt={project.title}
+                      alt={getLocalized(project, "title")}
                       className="w-20 h-20 object-contain"
                     />
                     <h3
@@ -104,7 +111,7 @@ export const Cases: React.FC = () => {
                         theme === "dark" ? "text-white" : "text-gray-900"
                       )}
                     >
-                      {project.title}
+                      {getLocalized(project, "title")}
                     </h3>
                     <div
                       className={clsx(
@@ -112,10 +119,10 @@ export const Cases: React.FC = () => {
                         theme === "dark" ? "text-gray-300" : "text-gray-600"
                       )}
                     >
-                      <p>{project.budget}</p>
-                      <p>{project.users}</p>
-                      <p>{project.geo}</p>
-                      <p>{project.cpi}</p>
+                      <p>{getLocalized(project, "budget")}</p>
+                      <p>{getLocalized(project, "users")}</p>
+                      <p>{getLocalized(project, "geo")}</p>
+                      <p>{getLocalized(project, "cpi")}</p>
                     </div>
                   </div>
                 </motion.div>

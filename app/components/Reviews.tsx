@@ -1,18 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 type Review = {
   id: number;
   projectLogo: string;
-  projectName: string;
+  projectName_ua: string;
+  projectName_ru: string;
+  projectName_en: string;
   authorName: string;
-  authorRole: string;
-  text: string;
+  authorRole_ua: string;
+  authorRole_ru: string;
+  authorRole_en: string;
+  text_ua: string;
+  text_ru: string;
+  text_en: string;
   createdAt: string;
 };
 
@@ -21,6 +28,7 @@ export const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const t = useTranslations("reviews");
+  const locale = useLocale(); // 'ua' | 'ru' | 'en'
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -40,7 +48,13 @@ export const Reviews: React.FC = () => {
     fetchReviews();
   }, []);
 
-  const skeletonArray = Array(3).fill(null); // количество скелетонов
+  const skeletonArray = Array(3).fill(null);
+
+  // Вспомогательная функция
+  const getLocalized = (item: any, key: string) => {
+    const field = `${key}_${locale}`;
+    return item[field] || item[`${key}_en`] || "";
+  };
 
   return (
     <section
@@ -102,7 +116,7 @@ export const Reviews: React.FC = () => {
                 >
                   <img
                     src={review.projectLogo}
-                    alt={review.projectName}
+                    alt={getLocalized(review, "projectName")}
                     className="w-16 h-16 rounded-full mb-4 object-cover"
                   />
                   <h3
@@ -119,7 +133,8 @@ export const Reviews: React.FC = () => {
                       theme === "dark" ? "text-gray-400" : "text-gray-600"
                     )}
                   >
-                    {review.authorRole} @ {review.projectName}
+                    {getLocalized(review, "authorRole")} @{" "}
+                    {getLocalized(review, "projectName")}
                   </p>
                   <p
                     className={clsx(
@@ -127,7 +142,7 @@ export const Reviews: React.FC = () => {
                       theme === "dark" ? "text-gray-400" : "text-gray-600"
                     )}
                   >
-                    “{review.text}”
+                    “{getLocalized(review, "text")}”
                   </p>
                 </motion.div>
               ))}
