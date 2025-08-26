@@ -187,7 +187,7 @@ export const CustomCursor = () => {
       />
 
       {/* Светящееся кольцо */}
-      <motion.div
+      {/* <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[1]"
         style={{
           translateX: followerX,
@@ -218,10 +218,10 @@ export const CustomCursor = () => {
           duration: 6,
           ease: "easeInOut",
         }}
-      />
+      /> */}
 
       {/* Центральная точка */}
-      <motion.div
+      {/* <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[2]"
         style={{
           translateX: followerX,
@@ -247,8 +247,8 @@ export const CustomCursor = () => {
           repeat: Infinity,
           duration: 6,
           ease: "easeInOut",
-        }}
-      />
+        }} */}
+      {/* /> */}
     </>
   );
 };

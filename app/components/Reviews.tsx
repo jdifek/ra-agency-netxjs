@@ -25,7 +25,9 @@ export const Reviews: React.FC = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("https://ra-agency-back-production-246f.up.railway.app/reviews");
+        const res = await fetch(
+          "https://back-production-fe07.up.railway.app/reviews"
+        );
         const data = await res.json();
         setReviews(data);
       } catch (error) {
@@ -62,8 +64,8 @@ export const Reviews: React.FC = () => {
             theme === "dark" ? "text-white" : "text-gray-900"
           )}
         >
-  {t("title")}
-  </motion.h2>
+          {t("title")}
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {isLoading

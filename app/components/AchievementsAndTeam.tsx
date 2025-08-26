@@ -80,17 +80,18 @@ const AchievementItem = ({ icon: Icon, item, index }: any) => {
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      className={clsx(
-        "group p-6 rounded-2xl shadow-md transition-all duration-300 hover:scale-105 hover:shadow-2xl",
-        theme === "dark"
-          ? "bg-white/5 text-white border border-white/10 hover:bg-white/10"
-          : "bg-white text-gray-900 border border-gray-200 hover:"
-      )}
-    >
+    ref={ref}
+    initial={{ opacity: 0, y: 20 }}
+    animate={inView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.6, delay: index * 0.2 }}
+    className={clsx(
+      "group p-6 rounded-2xl shadow-md transition-all duration-300 hover:scale-105 hover:shadow-2xl",
+      theme === "dark"
+        ? "bg-gray-800 text-white border border-gray-700 hover:bg-gray-700"
+        : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50"
+    )}
+  >
+  
       <Icon className="mx-auto w-8 h-8 mb-2 opacity-70 group-hover:text-amber-400 transition-colors" />
       <div className="text-3xl font-bold">
         {inView && <CountUp end={item.value} duration={2} separator="," />}

@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <Logo3DHeader url="/2.glb" size={80} />
+            <Logo3DHeader url="/2.glb" size={100} />
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">

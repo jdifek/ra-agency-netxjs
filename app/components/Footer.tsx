@@ -28,7 +28,7 @@ export const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <Logo3D url="/2.glb" size={120} />
+                <Logo3D url="/RAAgencyyellow.glb" size={120} />
               </div>
 
            

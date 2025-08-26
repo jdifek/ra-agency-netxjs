@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
@@ -15,7 +15,9 @@ export const Cases: React.FC = () => {
   const { theme } = useTheme();
   const swiperRef = useRef<any>(null);
   const t = useTranslations("cases");
-  const projects = t.raw("projects");
+
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const goNext = () => {
     if (swiperRef.current) swiperRef.current.slideNext();
@@ -25,16 +27,29 @@ export const Cases: React.FC = () => {
     if (swiperRef.current) swiperRef.current.slidePrev();
   };
 
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const res = await fetch("https://back-production-fe07.up.railway.app/cases");
+        const data = await res.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("❌ Error fetching cases:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCases();
+  }, []);
+
   return (
     <section
       id="cases"
-      className={clsx(
-        "relative py-24 overflow-hidden",
-        theme === "dark" ? "" : ""
-      )}
+      className={clsx("relative py-24 overflow-hidden", theme === "dark" ? "" : "")}
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <motion.h2
@@ -50,60 +65,64 @@ export const Cases: React.FC = () => {
           {t("title")}
         </motion.h2>
 
-        <Swiper
-          modules={[Navigation]}
-          slidesPerView={1}
-          loop={true}
-          spaceBetween={30}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className="max-w-3xl mx-auto"
-        >
-          {projects.map((project: any, index: number) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={clsx(
-                  "p-8 rounded-2xl border shadow-xl backdrop-blur-sm",
-                  theme === "dark"
-                    ? "bg-white/5 border-white/10"
-                    : "bg-white border-gray-200"
-                )}
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <img
-                    width={80}
-                    height={80}
-                    src={project.img}
-                    alt={project.title}
-                    className="w-20 h-20 object-contain"
-                  />
-                  <h3
-                    className={clsx(
-                      "text-2xl font-bold",
-                      theme === "dark" ? "text-white" : "text-gray-900"
-                    )}
-                  >
-                    {project.title}
-                  </h3>
-                  <div
-                    className={clsx(
-                      "text-base max-w-xl space-y-2 text-center",
-                      theme === "dark" ? "text-gray-300" : "text-gray-600"
-                    )}
-                  >
-                    <p>{project.budget}</p>
-                    <p>{project.users}</p>
-                    <p>{project.geo}</p>
-                    <p>{project.cpi}</p>
+        {loading ? (
+          <div className="text-center text-gray-500">Завантаження...</div>
+        ) : (
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            loop={true}
+            spaceBetween={30}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            className="max-w-3xl mx-auto"
+          >
+            {projects.map((project: any, index: number) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className={clsx(
+                    "p-8 rounded-2xl border shadow-xl backdrop-blur-sm",
+                    theme === "dark"
+                      ? "bg-gray-900/70 border-gray-700"
+                      : "bg-white/80 border-gray-200"
+                  )}
+                >
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <img
+                      width={80}
+                      height={80}
+                      src={project.img}
+                      alt={project.title}
+                      className="w-20 h-20 object-contain"
+                    />
+                    <h3
+                      className={clsx(
+                        "text-2xl font-bold",
+                        theme === "dark" ? "text-white" : "text-gray-900"
+                      )}
+                    >
+                      {project.title}
+                    </h3>
+                    <div
+                      className={clsx(
+                        "text-base max-w-xl space-y-2 text-center",
+                        theme === "dark" ? "text-gray-300" : "text-gray-600"
+                      )}
+                    >
+                      <p>{project.budget}</p>
+                      <p>{project.users}</p>
+                      <p>{project.geo}</p>
+                      <p>{project.cpi}</p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
 
         <div className="flex justify-between mt-6 max-w-3xl mx-auto">
           <button
