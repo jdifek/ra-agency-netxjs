@@ -103,8 +103,8 @@ export const Cases: React.FC = () => {
                       height={80}
                       src={project.img}
                       alt={getLocalized(project, "title")}
-                      className="w-20 h-20 object-contain"
-                    />
+                      className="w-20 h-20 object-contain rounded-full"
+                      />
                     <h3
                       className={clsx(
                         "text-2xl font-bold",

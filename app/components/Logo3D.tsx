@@ -42,13 +42,17 @@ const Model = ({ url, autoRotate }: { url: string; autoRotate?: boolean }) => {
     // Масштаб
     groupRef.current.scale.setScalar(0.5); // или авто
   }, [clonedScene]);
+  const phaseRef = useRef(Math.random() * Math.PI * 2);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (autoRotate && groupRef.current) {
-      groupRef.current.rotation.y += 0.003;
+      const t = clock.getElapsedTime();
+  
+      // амплитуда 0.7 (~40°), скорость 0.8
+      groupRef.current.rotation.y = Math.sin(t * 0.8 + phaseRef.current) * 0.7;
     }
   });
-
+  
   return (
     <group ref={groupRef}>
       <primitive object={clonedScene} />
