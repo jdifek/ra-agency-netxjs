@@ -128,7 +128,7 @@ export const Hero: React.FC = () => {
       >
         <p
           className={clsx(
-            "text-2xl leading-relaxed",
+            "text-lg leading-relaxed",
             theme === "dark" ? "text-gray-400" : "text-gray-600"
           )}
         >
