@@ -62,7 +62,7 @@ export const Services: React.FC = () => {
                 className={clsx(
                   "group p-6 rounded-2xl border shadow-sm transition-all duration-300 cursor-default",
                   theme === "dark"
-                    ? "bg-white/5 border-white/10 hover:bg-white/10 hover:shadow-md"
+                    ? "bg-gray-800 text-white border border-gray-700 hover:bg-gray-700"
                     : "bg-white border-gray-200 hover:bg-gray-50 hover:shadow-md"
                 )}
               >
